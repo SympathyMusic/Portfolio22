@@ -1,0 +1,100 @@
+.scalable100 {
+  width: 100%;
+  height: auto;
+  }
+.scalable75 {
+  width: 75%;
+  height: auto;
+  }
+hr {
+  color: #F2A9A2;
+  }
+h1 {
+  text-align: center;
+  font-family: Lucida Console, monospace;
+  }
+.menu {
+    display: flex;
+    border: 5px solid rgb(143, 21, 58);
+    padding: 2px;
+    justify-content: space-around;
+}
+.menu a {
+    color: #000000;
+    text-decoration: none;
+    font-family: Lucida Console, monospace;
+    font-size: 22px;
+}
+.box {
+    flex-grow: 1;
+    background: rgb(255, 255, 255);
+    text-align: center;
+    padding: 20px;
+    border: 1px solid #f2d0d7;
+}
+.flexbox-container {
+    display: flex;
+    flex-direction: row;
+    font-family: Lucida Console, monospace;
+    
+
+
+    /*main (left right) axis*/
+    /*justify-content: stretch;*/
+    justify-content: flex-start;
+    /*justify-content: flex-end;*/
+    /*justify-content: center;*/
+    /*justify-content: stretch;*/
+    /*justify-content: space-between;*/
+    /*justify-content: space-evenly;*/
+    /*justify-content: space-end;*/
+    
+
+
+
+    /*cross (up down) axis*/
+    /*align-items: space-evenly;
+    /*align-items:stretch;*/
+    /*align-items:space-between;*/
+    /*align-items:space-around;*/
+    /*align-items:end;*/
+    /*align-items:space-evenly;*/
+    ;
+}
+
+.flexbox-item {
+    margin: 5px;
+    padding: 10px;
+    border: 2px solid #f2a9a2;
+}
+
+.item-1 {
+    /*flex-grow: 1;*/
+    width: 35%;
+    min-height: 50px;
+    font-family: 'Secular One', sans-serif;
+    font-size: 28px;
+}
+
+.item-2 {
+    /*flex-grow: 2;*/
+    width: 50%;
+    min-height: 200px;
+    align-self: center;
+}
+
+.item-3 {
+    /*flex-grow: 3;*/
+    width: 100%;
+    min-height: 200px;
+    align-self: center;
+}
+
+/*js file formatting*/
+canvas {
+    border: thin solid #FF2424;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, 0%);
+}
