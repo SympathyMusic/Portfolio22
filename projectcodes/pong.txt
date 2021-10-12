@@ -1,0 +1,111 @@
+//If key presses aren't registering, click on the window. Press ENTER to start the game. W and S moves the left paddle, I and K moves the right. The ball initially goes left.
+var padd1Y = 341;
+var padd2Y = 341;
+var xdir = -4;
+var ydir = -4;
+var ballX = 468;
+var ballY = 0;
+var score1 = 0;
+var score2 = 0;
+var started = false;
+function setup() {
+  createCanvas(936, 702);
+}
+
+function draw() {
+  background(0);
+  midLine();
+  paddle1();
+  paddle2();
+  ball();
+  score();
+}
+function midLine() {
+  fill(255);
+  rect(465, 26, 3, 26);
+  rect(465, 78, 3, 26);
+  rect(465, 130, 3, 26);
+  rect(465, 182, 3, 26);
+  rect(465, 234, 3, 26);
+  rect(465, 286, 3, 26);
+  rect(465, 338, 3, 26);
+  rect(465, 390, 3, 26);
+  rect(465, 442, 3, 26);
+  rect(465, 494, 3, 26);
+  rect(465, 546, 3, 26);
+  rect(465, 598, 3, 26);
+  rect(465, 650, 3, 26);
+}
+function paddle1() {
+  rect(20, padd1Y, 10, 70);
+}
+function paddle2() {
+  rect(906, padd2Y, 10, 70);
+}
+
+function ball() {
+  fill(255);
+  circle(ballX, ballY, 15);
+  //Ball X movement
+  if (started) {
+    ballX += xdir;
+    if (ballX >= 936 || ballX <= 0) {
+      reset();
+    }
+    //Ball Y movement
+    ballY -= ydir;
+    if (ballY > 702 || ballY < 0) {
+      ydir *= -1;
+    }
+    //Bounce off paddle
+    if (ballX === 20 && ballY >= padd1Y && ballY <= padd1Y + 70)      {
+      xdir *= -1;
+    }
+    else if (ballX === 20 && ballY >= padd1Y + 45 && ballY <= padd1Y + 70) {
+      ydir*=-1;
+    }
+    if (ballX === 904 && ballY >= padd2Y && ballY <= padd2Y + 70) {
+      xdir *= -1;
+    }
+  }
+}
+
+function score() {
+  textSize(50);
+  text(score1, 234, 50);
+  text(score2, 702, 50);
+}
+
+function reset() {
+  if (ballX >= 936) {
+    score1++;
+  } else if (ballX <= 0) {
+    score2++;
+  }
+  if (random(100) < 50) {
+    xdir = 4;
+  } else {
+    xdir = -4;
+  }
+  ballX = 468;
+  ballY = 0;
+}
+
+function keyTyped() {
+  if (key === "w") {
+    padd1Y -= 50;
+  } else if (key === "s") {
+    padd1Y += 50;
+  }
+  if (key === "i") {
+    padd2Y -= 50;
+  } else if (key === "k") {
+    padd2Y += 50;
+  }
+}
+
+function keyPressed() {
+  if (keyCode === ENTER) {
+    started = true;
+  }
+}
