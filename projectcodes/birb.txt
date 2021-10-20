@@ -1,0 +1,75 @@
+let width=500; //Changes window size (default 500)
+let leafDensity=25; //Higher number, more CHAOS (default 25)
+
+function setup() {
+  createCanvas(width, width);
+  frameRate(30); //Touch at your own peril.
+}
+
+function draw() {
+  background(0);
+  leafGrid();
+  bird();
+  
+}
+
+function leafGrid(){
+  for (let r=0; r<width-(width/5.555555556); r+=width/leafDensity){
+    for (let c=0; c<width-(width/5.555555556); c+=width/leafDensity){
+      leaf(r,c);
+    }
+  }
+}
+
+function leaf(addNumX, addNumY){
+  fill(0, 132, 0);
+  triangle((random(width)/5)+addNumX, (random(width)/5)+addNumY, (random(width)/5)+addNumX, (random(width)/5)+addNumY, (random(width)/5)+addNumX, (random(width)/5)+addNumY);
+}
+
+function bird(){
+  necc();
+  beak();
+  head();
+  plumage();
+  eye();
+}
+
+function necc(){
+  noFill();
+  
+  strokeWeight(width/10);
+  stroke(255);
+  bezier(0,width,(width/(1.079913607)),(width/1.094091904),(width/5.747126437),(width/1.901130684),(width/3.205128205),(width/2.487562189))
+  noStroke();
+}
+
+function beak(){
+  fill(224,222,215);
+  triangle((width/1.851851852),(width/2.941176471),(width/2.057613169),(width/2.325581395),(width/1.079913607),(width/1.730103806));
+}
+
+function plumage(){
+  stroke(183,51,65);
+  strokeWeight(width/9.615384615);
+  curve((width/2.737252747),(width/1.5625),(width/3.184713376),(width/2),(width/3.333333333),(width/2.380952381),(width/2.173913043),(width/2.5));
+  curve((width/2.403846154),(width/1.333333333),(width/3.378378378),(width/2.380952381),(width/2.222222222),(width/2.631578947),(width/1.538461538),(width/2.127659574));
+}
+
+function eye(){
+  fill(255);
+  stroke(214,125,92);
+  strokeWeight(width/250);
+  ellipse((width/2.127659574),(width/2.808988764),(width/15.15151515),(width/26.31578947));
+  fill(170,41,27);
+  stroke(0)
+  strokeWeight(1);
+  ellipse((width/2.127659574),(width/2.793296089),(width/23.80952381),(width/38.46153846));
+  fill(0);
+  ellipse((width/2.127659574),(width/2.793296089),(width/62.5),(width/100));
+}
+
+function head(){
+  fill(255);
+  ellipse((width/2.358490566),(width/2.702702703),(width/3.623188406),(width/6.944444444))
+}
+
