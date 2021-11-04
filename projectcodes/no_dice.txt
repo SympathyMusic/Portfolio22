@@ -1,0 +1,66 @@
+let dice;
+let sumTotal = 0;
+let diceNumber = 50; //Generates n^2 dice. Set to 50 at default.
+
+/* Darker square=higher value die */
+
+function setup() {
+  createCanvas(600, 600); 
+  frameRate(1);
+}
+
+function draw() {
+  background(251);
+  for (let r = 0; r < width; r += width / diceNumber) {
+    for (let c = 0; c < height; c += height / diceNumber) {
+      dice = new Die(r, c);
+      dice.roll();
+      dice.colors();
+      dice.show();
+    }
+  }
+  print("total: " + sumTotal);
+  sumTotal = 0;
+}
+
+class Die {
+  constructor(x, y) {
+    this.size = (width * height) / 4;
+    this.x = x;
+    this.y = y;
+    this.rectColor = color(251);
+    this.textColor = color(0);
+  }
+
+  roll() {
+    this.number = floor(random(1, 7));
+    sumTotal += this.number;
+  }
+
+  colors() {
+    if (this.number === 1) {
+      this.rectColor = color(0);
+    }
+    if (this.number === 2) {
+      this.rectColor = color(51);
+    }
+    if (this.number === 3) {
+      this.rectColor = color(102);
+    }
+    if (this.number === 4) {
+      this.rectColor = color(153);
+    }
+    if (this.number === 5) {
+      this.rectColor = color(204);
+    }
+    if (this.number === 6) {
+      this.rectColor = color(255);
+    }
+  }
+
+  show() {
+    noStroke();
+    fill(this.rectColor);
+    rect(this.x, this.y, this.size, this.size);
+  }
+}
