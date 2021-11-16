@@ -1,0 +1,71 @@
+var moldSwitch = false;
+var blackMold = [];
+var whiteMold = [];
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  frameRate(200);
+  for (var i = 0; i < width * 4; i++) {
+    blackMold[i] = new mold(i % width, 0, color(random(255),random(255),random(255)));
+    whiteMold[i] = new mold(i % width, height, 251);
+  }
+}
+
+function draw() {
+  if (!moldSwitch) {
+    //Black Mold Activates
+    for (var i = 0; i < blackMold.length; i++) {
+      blackMold[i].move();
+      blackMold[i].display();
+    }
+  }
+
+  if (moldSwitch) {
+    //White Mold Activates
+    for (var k = 0; k < whiteMold.length; k++) {
+      whiteMold[k].move();
+      whiteMold[k].display();
+    }
+  }
+
+  if (frameCount == 800) {
+    //Switches mold after certain time
+    moldSwitch = !moldSwitch;
+  }
+  if (frameCount == 1600) {
+    //Resets mold after certain time
+    frameCount = 0;
+    moldSwitch = false;
+    blackMold = [];
+    whiteMold = [];
+    setup();
+  }
+}
+
+class mold {
+  constructor(xPos, yPos, moldColor) {
+    this.xPos = xPos;
+    this.yPos = yPos;
+    this.moldColor = moldColor;
+  }
+
+  move() {
+    if (!moldSwitch) {
+      //Black Mold
+      this.xPos += random(-3, 3);
+      this.yPos += random(-2, 4);
+    } else if (moldSwitch) {
+      //White Mold
+      this.xPos += random(-3, 3);
+      this.yPos += random(-4, 2);
+    }
+
+    this.xPos = constrain(this.xPos, 0, width);
+    this.yPos = constrain(this.yPos, 0, height);
+  }
+
+  display() {
+    stroke(this.moldColor);
+    point(this.xPos, this.yPos);
+  }
+}
